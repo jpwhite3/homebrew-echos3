@@ -1,22 +1,23 @@
-# This is a Homebrew formula for the echos3 application.
-# You will need to fill in the `url` and `sha256` fields.
 class Echos3 < Formula
-  desc "A command-line tool to watch a directory and sync changes to an S3 bucket"
-  homepage "https://github.com/jpwhite3/echos3" # <- UPDATE THIS
-  url "https://github.com/jpwhite3/echos3/archive/refs/tags/v0.0.3.tar.gz" # <- UPDATE THIS
-  sha256 "171b24cf924ed9c6a8c80b93a324579a9b19115715de4a898a5182df194b0e7b" # <- UPDATE THIS
-  license "MIT" # Or whichever license you choose
-
-  depends_on "go" => :build
-
-  def install
-    # Set the version dynamically at build time using the git tag
-    version = self.version.to_s.sub(/^v/, "")
-    system "go", "build", "-ldflags", "-X main.Version=#{version}", "-o", bin/"echos3"
+  desc "Watch local files and sync changes to S3 in real-time"
+  homepage "https://github.com/jpwhite3/echos3"
+  version "0.0.8"
+  
+  on_macos do
+    if Hardware::CPU.intel?
+      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.8/echos3-darwin-amd64"
+      sha256 "ab1bd33a5b1788c79dc2422fe3a9fe2e0042ec352b884f61c0521205dedfaa3c"
+    else
+      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.8/echos3-darwin-arm64"
+      sha256 "7f2dc42d8c74d136cfa7fdfbc1baca3fd9e22e119be7520f66e6e85f2015cfbe"
+    end
   end
-
+  
+  def install
+    bin.install stable.url.split("/").last => "echos3"
+  end
+  
   test do
-    # Test that the version command works and returns the correct version
-    assert_match "echos3 version #{version}", shell_output("#{bin}/echos3 --version")
+    assert_match "echos3 version", shell_output("#{bin}/echos3 --version")
   end
 end
