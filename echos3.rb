@@ -1,15 +1,15 @@
 class Echos3 < Formula
   desc "Watch local files and sync changes to S3 in real-time"
   homepage "https://github.com/jpwhite3/echos3"
-  version "0.0.12"
+  version "0.0.13"
   
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.12/echos3-darwin-amd64"
-      sha256 "ae598c2ec8c16028bdae5249bd25c9cacaa937e4b3a58f2b15aa5312198a4e5b"
+      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.13/echos3-darwin-amd64"
+      sha256 "d2970d1de25a3ea71423f5430d841a302366ee274efef59900c943b271de82ee"
     else
-      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.12/echos3-darwin-arm64"
-      sha256 "fa5978c132aee12ff8ad0b55f870fe75a300320c6f9ee49fac540da596ce0d5f"
+      url "https://github.com/jpwhite3/echos3/releases/download/v0.0.13/echos3-darwin-arm64"
+      sha256 "b8ff1dccb3fe959f52e70b643ce9e60bddd76abdfde9470398baf6ab15d4bfe8"
     end
   end
   
